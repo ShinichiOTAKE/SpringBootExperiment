@@ -1,27 +1,28 @@
-package jp.example.experiment.service;
+package jp.example.experiment.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import jp.example.experiment.dto.request.Smp00010RequestDto;
+import jp.example.experiment.dto.request.RequestDto;
 import jp.example.experiment.dto.response.impl.Smp00010ResponseDto;
 import jp.example.experiment.entity.ProductsEntity;
 import jp.example.experiment.repository.ProductsRepository;
+import jp.example.experiment.service.BusinessScreenService;
 
-@Service
-public class Smp00010Service {
+@Service("Smp00010Service")
+public class Smp00010Service implements BusinessScreenService {
 	
 	private final ProductsRepository productsRepository;
 	
-	public Smp00010Service(ProductsRepository productsRepository) {
+	private Smp00010Service(ProductsRepository productsRepository) {
 		
 		this.productsRepository = productsRepository;
 		
 	}
 
-	public List<Smp00010ResponseDto> getProductsById(Smp00010RequestDto request) {
+	public List<Smp00010ResponseDto> searchButton_onClick(RequestDto request) {
 	
 		List<ProductsEntity> entities = productsRepository.getProductsById(request);
 		

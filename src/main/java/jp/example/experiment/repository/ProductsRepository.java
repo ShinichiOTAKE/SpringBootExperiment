@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import jp.example.experiment.dto.request.Smp00010RequestDto;
+import jp.example.experiment.dto.request.RequestDto;
 import jp.example.experiment.entity.ProductsEntity;
 
 @Repository
@@ -24,10 +24,10 @@ public class ProductsRepository {
 			"  FROM PRODUCTS" +
 			" WHERE ID = :id";
 	
-	public List<ProductsEntity> getProductsById(final Smp00010RequestDto dto) {
+	public List<ProductsEntity> getProductsById(final RequestDto request) {
 	
 		return (List<ProductsEntity>) jt.query(GET_PRODUCTS_BY_ID_SQL,
-				new BeanPropertySqlParameterSource(dto),
+				new BeanPropertySqlParameterSource(request),
 				new BeanPropertyRowMapper<ProductsEntity>(ProductsEntity.class));
 	}
 
